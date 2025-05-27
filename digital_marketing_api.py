@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+import os
 
 app = Flask(__name__)
 
@@ -57,4 +58,5 @@ def search_campaigns():
     return jsonify({"success": True, "data": results})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    port = int(os.environ.get('PORT', 5000))  # Use PORT from environment or default to 5000
+    app.run(host='0.0.0.0', port=port, debug=False)  # Disable debug mode in production
